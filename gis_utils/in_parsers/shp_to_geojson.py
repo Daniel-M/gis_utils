@@ -34,6 +34,6 @@ def shp_to_geojson(shp_file_name,geojson_file_name=None):
     pool = mp.Pool()
     features = pool.map(Feature,shpfile.iterShapes())
 
-    f = open(geojson_file_name,"w")
-    f.write(json.dumps(FeatureCollection(features),indent=2))
+    with open(geojson_file_name,"w") as f:
+        f.write(json.dumps(FeatureCollection(features),indent=2))
     f.close()

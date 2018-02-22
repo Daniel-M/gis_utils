@@ -11,7 +11,9 @@ def geojson_to_shp(geojson_file_name,shp_file_name=None):
         shp_file_name = geojson_file_name.split(os.path.sep)[-1].split(".")[0]
 
     # Open the GeoJSON and load it to memory
-    geoj = geojson.load(open(geojson_file_name,"r"))
+    with open(geojson_file_name,"r") as f:
+        geoj = geojson.load(f)
+    f.close()
 
     w = shapefile.Writer()
 
